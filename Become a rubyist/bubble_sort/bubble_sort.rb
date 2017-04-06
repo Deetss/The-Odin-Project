@@ -14,7 +14,6 @@ def bubble_sort (array)
 end
 
 def bubble_sort_by array, &block
-  #work in progress
     max_loop = array.length - 1
     swapped = true
     while swapped

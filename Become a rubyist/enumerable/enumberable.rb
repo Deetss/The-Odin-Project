@@ -101,7 +101,7 @@ module Enumerable
     end
     new_array
   end
-
+# everything below here isnt working properly!
   def deetss_inject
     total = 0
     self.deetss_each do |element|

@@ -94,7 +94,7 @@ module Enumerable
     return counter
   end
 
-  def deetss_map
+  def deetss_map &codeblock
     new_array = []
     self.deetss_each do |element|
       new_array.push(yield element)
@@ -103,8 +103,9 @@ module Enumerable
   end
 # everything below here isnt working properly!
   def deetss_inject
-    total = 0
-    self.deetss_each do |element|
+    total ||= self.first
+
+    self[1..-1].deetss_each do |element|
       total = yield total, element
     end
     total
@@ -118,4 +119,4 @@ def multiply_els array
   end
 end
 
-multiply_els([2,4,5])
+puts multiply_els([2,4,5])

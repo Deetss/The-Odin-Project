@@ -1,7 +1,7 @@
 class Player
-  attr_reader :name, :points, :role
-  def initialize(name)
-    @name = name
+  attr_reader :points, :role
+  def initialize(role)
+    @role = role
     @points = 0
   end
   def add_point

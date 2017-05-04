@@ -3,18 +3,22 @@ require_relative "player.rb"
 require_relative "game.rb"
 
 puts "Welcome to the game of mastermind!"
-puts "You will be playing against the computer!"
 puts "Enter the number of games you wish to play:"
 num_of_games = gets.chomp.to_i
 while num_of_games > 0
-  puts "The computer has generated a code!"
   game = Game.new
-  game.generate_code
+  puts "Please choose a role(codebreaker or codemaker):"
+  role = gets.chomp.downcase
+  game.check_role(role)
   board = game.board
   while game.turns > 0
-    puts "Please make your guess:"
-    guess_order = gets.chomp.split(/\s/)
-    game.guess(guess_order)
+    if game.player.role == "codebreaker"
+      puts "Please make your guess:"
+      guess_order = gets.chomp.split(/\s/)
+      game.guess(guess_order)
+    else
+      #create AI for computer
+    end
     print "\n"
     board.show_last_guess
     if board.solved_code?
@@ -27,4 +31,5 @@ while num_of_games > 0
       game.feedback
     end
   end
+
 end

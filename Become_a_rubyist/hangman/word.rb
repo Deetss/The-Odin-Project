@@ -15,7 +15,7 @@ class Word
 
   def scrub_dictionary(dictionary)
     dictionary.each do |word|
-      word.gsub(/"/,'')
+      word = word.chomp.downcase
       unless word.length >= 5 && word.length <= 12
         dictionary.delete(word)
       end

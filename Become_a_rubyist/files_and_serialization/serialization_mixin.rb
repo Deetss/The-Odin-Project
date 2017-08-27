@@ -1,4 +1,4 @@
-require 'json'
+require 'msgpack'
 
 #mixin
 module BasicSerializable
@@ -6,7 +6,7 @@ module BasicSerializable
   #should point to a class; change to a different
   #class (e.g. MessagePack, JSON, YAML) to get a different
   #serialization
-  @@serializer = JSON
+  @@serializer = MessagePack
 
   def serialize
     obj = {}

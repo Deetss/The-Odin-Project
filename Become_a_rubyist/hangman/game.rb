@@ -54,42 +54,52 @@ class Game
     save = File.new("save.txt", "w+")
     save.puts JSON::dump(save_data)
     save.close
-    exit
   end
 
   #prompts the user to make a guess then shovels the guess into :guesses
   def make_guess
-    puts "Make a guess:"
-    @current_guess = gets.chomp
-    puts
-    guesses << current_guess unless current_guess == "save" || current_guess == secret_word
+      puts "Make a guess:"
+      @current_guess = gets.chomp
+      unless good_guess?
+        puts "That is an invalid guess, please try again!"
+        @current_guess = gets.chomp
+      end
+      puts
+      guesses << current_guess unless current_guess == "save" || current_guess == secret_word
+  end
+
+  #checks for invalid guess
+  def good_guess?
+    current_guess == "save" || current_guess == secret_word || current_guess.length == 1
   end
   
   #parses through the secret word to check for matching guesses, then reveals a correct guess
   #in the hidden_word string
   def show_letter
-    split_blanks = hidden_word.split("")
-    occurences = []
-    occurences = (0 ... secret_word.length).find_all { |i| secret_word[i,1] == current_guess}
-    occurences.each { |i| split_blanks[i] = current_guess}
-    @hidden_word = split_blanks.join("")
-    puts hidden_word
+      split_blanks = hidden_word.split("")
+      occurences = []
+      occurences = (0 ... secret_word.length).find_all { |i| secret_word[i,1] == current_guess}
+      occurences.each { |i| split_blanks[i] = current_guess}
+      @hidden_word = split_blanks.join("")
+      puts hidden_word
   end
 
   #gives feedback to the user depending on their input
   def check_guess
-    if current_guess.downcase == secret_word
+    if current_guess == secret_word
       player_won?
-    elsif secret_word.include? current_guess
-      show_letter
-      puts "This word includes the guessed letter\n\n"
-    elsif current_guess.downcase == "save"
-      create_save
-      puts "Game saved!"
-      exit_game?
     else
-      show_letter
-      puts "This word does not include the guessed letter\n\n"
+      if secret_word.include? current_guess
+        show_letter
+        puts "This word includes the guessed letter\n\n"
+      elsif current_guess == "save"
+        create_save
+        puts "Game saved! Exiting game!"
+        exit
+      else
+        show_letter
+        puts "This word does not include the guessed letter\n\n"
+      end
     end
   end
 
@@ -147,6 +157,6 @@ while !game.player_won?
   game.show_guesses
   game.make_guess
   game.check_guess
-  game.player_won?
   game.end_turn
+  game.player_won?
 end

@@ -1,1 +1,1 @@
-{"turns":12,"guesses":[],"secret_word":"escaped\r\n","hidden_word":"_______\r\n"}
+{"turns":8,"guesses":["a","e","i","o"],"secret_word":"rheumy","hidden_word":"__e___"}

@@ -6,7 +6,7 @@ class Word
     @scrubbed_dict = ""
     dictionary_exists?
     load_dictionary
-    @random_word = pick_random_word(scrubbed_dict)
+    @random_word = pick_random_word(scrubbed_dict).strip
     @blank_word = hide_word(random_word)
   end
 
@@ -19,7 +19,7 @@ class Word
   #scrubs a indicated dictionary file
   def scrub_dictionary(dictionary)
     dictionary.each do |word|
-      word = word.chomp.downcase
+      word.downcase!.gsub(/\W/, "")
       unless word.length >= 5 && word.length <= 12
         dictionary.delete(word)
       end

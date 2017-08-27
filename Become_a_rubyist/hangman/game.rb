@@ -38,6 +38,7 @@ class Game
       puts "No save found!"
     end
   end
+
   #loads save file and sets instance variables to saved state
   def load_save(save)
     save_data = JSON::load(save)
@@ -47,13 +48,13 @@ class Game
     puts "Loaded Save!"
   end
 
-  #serializes the current object and creates a save file
+  #serializes the current object, creates a save file, then exits game
   def create_save
     @save_data = {:turns => @turns,:guesses => @guesses,:secret_word => @secret_word, :hidden_word => @hidden_word}
     save = File.new("save.txt", "w+")
     save.puts JSON::dump(save_data)
     save.close
-    exit_game?
+    exit
   end
 
   #prompts the user to make a guess then shovels the guess into :guesses

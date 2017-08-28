@@ -1,9 +1,10 @@
 class Word
   attr_reader :scrubbed_dict, :blank_word, :random_word
 
+  @@raw_dictionary = File.readlines("5desk.txt")
+
   #initialize object
   def initialize
-    @scrubbed_dict = ""
     dictionary_exists?
     load_dictionary
     @random_word = pick_random_word(scrubbed_dict).strip
@@ -19,7 +20,7 @@ class Word
   #scrubs a indicated dictionary file
   def scrub_dictionary(dictionary)
     dictionary.each do |word|
-      word.downcase!.gsub(/\W/, "")
+      word.downcase
       unless word.length >= 5 && word.length <= 12
         dictionary.delete(word)
       end
@@ -35,18 +36,17 @@ class Word
   #checks working dir for scrubbed dictionary
   def dictionary_exists?
     unless File.exist?("dictionary.txt")
-      dictionary = File.readlines("5desk.txt")
-      scrub_dictionary(dictionary)
-      create_dictionary_file
+      scrub_dictionary(@@raw_dictionary)
+      create_dictionary_file(scrub_dictionary(@@raw_dictionary))
     end
 
   end
   
   #creates newly scrubbed dictionary file
-  def create_dictionary_file
-    File.open("dictionary.txt", "w") do |f|
-      f.puts @dictionary
-      end
+  def create_dictionary_file(dictionary)
+    dictionary_file = File.open("dictionary.txt", "w")
+    dictionary_file.puts dictionary
+    dictionary_file.close
   end
 
   #hides the chosen word for later uses

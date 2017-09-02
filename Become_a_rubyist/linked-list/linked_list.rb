@@ -52,7 +52,22 @@ class LinkedList
         end
         p size
     end
+
     
+    #returns the last item in the list
+    def tail
+        if head == nil
+            p "Theres nothing in the list"
+        else
+            tmp = head
+            while tmp.next_node != nil
+                tmp = tmp.next_node
+            end
+        p tmp
+        end
+    end
+
+
 end
 
 list = LinkedList.new
@@ -61,4 +76,4 @@ list.append("b")
 list.prepend(1)
 list.append(100)
 list.size
-list.head
+list.tail

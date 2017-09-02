@@ -43,14 +43,14 @@ class LinkedList
         tmp = head
         if head == nil
             size = 0
-            p size
+            size
         else
             while tmp.next_node != nil
                 tmp = tmp.next_node
                 size += 1
             end
         end
-        p size
+        size
     end
 
     
@@ -96,6 +96,24 @@ class LinkedList
         end
     end
 
+    #Returns true if value is in the list
+
+    def contains?(value)
+        tmp = head
+        if head == nil
+            false
+        else
+            while tmp != nil && tmp.value != value
+                tmp = tmp.next_node
+            end
+            
+            if tmp == nil
+                false
+            else
+                true
+            end
+        end
+    end
 
 end
 
@@ -110,3 +128,4 @@ p list.at_index(1)
 p list
 list.pop
 p list
+p list.contains?(143)

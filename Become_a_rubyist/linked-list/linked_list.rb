@@ -97,7 +97,6 @@ class LinkedList
     end
 
     #Returns true if value is in the list
-
     def contains?(value)
         tmp = head
         if head == nil
@@ -106,11 +105,30 @@ class LinkedList
             while tmp != nil && tmp.value != value
                 tmp = tmp.next_node
             end
-            
+
             if tmp == nil
                 false
             else
                 true
+            end
+        end
+    end
+
+    #Returns index of the current value
+    def find(value)
+        tmp = head
+        i = 0
+        if head == nil
+            nil
+        else
+            while tmp != nil && tmp.value != value
+                tmp = tmp.next_node
+                i += 1
+            end
+            if tmp == nil
+                "The value is not in the list"
+            else
+                i
             end
         end
     end
@@ -129,3 +147,4 @@ p list
 list.pop
 p list
 p list.contains?(143)
+p list.find("b")

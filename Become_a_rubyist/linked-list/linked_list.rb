@@ -6,6 +6,8 @@ class LinkedList
     def initialize
         @head = nil
     end
+
+
     #Subclass Node for our linked list
     class Node
         attr_accessor :value, :next_node
@@ -59,4 +61,4 @@ list.append("b")
 list.prepend(1)
 list.append(100)
 list.size
-p list
+list.head

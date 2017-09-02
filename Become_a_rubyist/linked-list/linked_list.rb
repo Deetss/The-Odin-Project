@@ -34,6 +34,22 @@ class LinkedList
     def prepend(value)
         @head = Node.new(value, head)
     end
+
+    #Returns the size of the linked list
+    def size
+        size = 1
+        tmp = head
+        if head == nil
+            size = 0
+            p size
+        else
+            while tmp.next_node != nil
+                tmp = tmp.next_node
+                size += 1
+            end
+        end
+        p size
+    end
     
 end
 
@@ -42,4 +58,5 @@ list.append("a")
 list.append("b")
 list.prepend(1)
 list.append(100)
+list.size
 p list

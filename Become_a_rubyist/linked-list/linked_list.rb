@@ -133,6 +133,16 @@ class LinkedList
         end
     end
 
+    #Prints list out as string to the console
+    def to_s
+        tmp = head
+        until tmp == nil
+            print "(#{tmp.value}) -> "
+            tmp = tmp.next_node
+        end
+        puts "nil"
+    end
+
 end
 
 list = LinkedList.new
@@ -148,3 +158,4 @@ list.pop
 p list
 p list.contains?(143)
 p list.find("b")
+list.to_s

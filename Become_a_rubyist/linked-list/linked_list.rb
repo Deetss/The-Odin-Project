@@ -54,7 +54,7 @@ class LinkedList
     end
 
     
-    #returns the last item in the list
+    #returns the last node in the list
     def tail
         if head == nil
             "Theres nothing in the list"
@@ -66,7 +66,7 @@ class LinkedList
         tmp
         end
     end
-    #returns the 
+    #returns the node at a given index
     def at_index(index)
         if head == nil
             "Theres nothing in the list"
@@ -79,7 +79,21 @@ class LinkedList
             end
             tmp
         end
+    end
 
+    #removes the last node of the list
+    def pop
+        if head == nil
+            "Nothing to remove"
+        else
+            prev = nil
+            cur = head
+            while cur.next_node != nil
+                prev = cur
+                cur = cur.next_node
+            end
+            prev.next_node = nil
+        end
     end
 
 
@@ -93,3 +107,6 @@ list.append(100)
 list.size
 list.tail
 p list.at_index(1)
+p list
+list.pop
+p list

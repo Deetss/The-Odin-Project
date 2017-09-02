@@ -39,12 +39,12 @@ class LinkedList
 
     #Returns the size of the linked list
     def size
-        size = 1
-        tmp = head
         if head == nil
             size = 0
             size
         else
+            size = 1
+            tmp = head
             while tmp.next_node != nil
                 tmp = tmp.next_node
                 size += 1
@@ -99,10 +99,10 @@ class LinkedList
 
     #Returns true if value is in the list
     def contains?(value)
-        tmp = head
         if head == nil
             false
         else
+            tmp = head
             while tmp != nil && tmp.value != value
                 tmp = tmp.next_node
             end
@@ -117,11 +117,11 @@ class LinkedList
 
     #Returns index of the current value
     def find(value)
-        tmp = head
-        i = 0
         if head == nil
             nil
         else
+            tmp = head
+            i = 0
             while tmp != nil && tmp.value != value
                 tmp = tmp.next_node
                 i += 1
@@ -146,20 +146,39 @@ class LinkedList
 
     #Inserts node at given index
     def insert_at(value, index)
-        prev = nil
-        cur = head
-        i = 0
         if index == 0
             prepend(value)
         elsif index >= self.size
             append(value)
         else
+            prev = nil
+            cur = head
+            i = 0
             until i == index
                 prev = cur
                 cur = cur.next_node
                 i += 1
             end
             prev.next_node = Node.new(value, cur)
+        end
+    end
+
+    #Removes node at given index
+    def remove_at(index)
+        if index == 0
+            @head = cur.next_node
+        elsif index >= self.size
+            pop
+        else
+            prev = nil
+            cur = head
+            i = 0
+            until i == index
+                prev = cur
+                cur = cur.next_node
+                i += 1
+            end
+            prev.next_node = cur.next_node
         end
     end
 
@@ -179,4 +198,6 @@ list.to_s
 p list.contains?(143)
 p list.find("b")
 list.insert_at("c", 0)
+list.to_s
+list.remove_at(2)
 list.to_s

@@ -57,14 +57,29 @@ class LinkedList
     #returns the last item in the list
     def tail
         if head == nil
-            p "Theres nothing in the list"
+            "Theres nothing in the list"
         else
             tmp = head
             while tmp.next_node != nil
                 tmp = tmp.next_node
             end
-        p tmp
+        tmp
         end
+    end
+    #returns the 
+    def at_index(index)
+        if head == nil
+            "Theres nothing in the list"
+        else
+            tmp = head
+            i = 0
+            while i != index
+                tmp = tmp.next_node
+                i += 1
+            end
+            tmp
+        end
+
     end
 
 
@@ -77,3 +92,4 @@ list.prepend(1)
 list.append(100)
 list.size
 list.tail
+p list.at_index(1)

@@ -54,7 +54,7 @@ class LinkedList
     end
 
     
-    #returns the last node in the list
+    #Returns the last node in the list
     def tail
         if head == nil
             "Theres nothing in the list"
@@ -66,7 +66,8 @@ class LinkedList
         tmp
         end
     end
-    #returns the node at a given index
+
+    #Returns the node at a given index
     def at_index(index)
         if head == nil
             "Theres nothing in the list"
@@ -81,7 +82,7 @@ class LinkedList
         end
     end
 
-    #removes the last node of the list
+    #Removes the last node of the list
     def pop
         if head == nil
             "Nothing to remove"
@@ -143,6 +144,25 @@ class LinkedList
         puts "nil"
     end
 
+    #Inserts node at given index
+    def insert_at(value, index)
+        prev = nil
+        cur = head
+        i = 0
+        if index == 0
+            prepend(value)
+        elsif index >= self.size
+            append(value)
+        else
+            until i == index
+                prev = cur
+                cur = cur.next_node
+                i += 1
+            end
+            prev.next_node = Node.new(value, cur)
+        end
+    end
+
 end
 
 list = LinkedList.new
@@ -153,9 +173,10 @@ list.append(100)
 list.size
 list.tail
 p list.at_index(1)
-p list
+list.to_s
 list.pop
-p list
+list.to_s
 p list.contains?(143)
 p list.find("b")
+list.insert_at("c", 0)
 list.to_s

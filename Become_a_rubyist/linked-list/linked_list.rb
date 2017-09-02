@@ -1,12 +1,10 @@
 #Linked List implementation
-
 class LinkedList
     attr_accessor :head
 
     def initialize
         @head = nil
     end
-
 
     #Subclass Node for our linked list
     class Node
@@ -52,7 +50,6 @@ class LinkedList
         end
         size
     end
-
     
     #Returns the last node in the list
     def tail
@@ -181,7 +178,6 @@ class LinkedList
             prev.next_node = cur.next_node
         end
     end
-
 end
 
 list = LinkedList.new
@@ -189,8 +185,8 @@ list.append("a")
 list.append("b")
 list.prepend(1)
 list.append(100)
-list.size
-list.tail
+p list.size
+p list.tail
 p list.at_index(1)
 list.to_s
 list.pop

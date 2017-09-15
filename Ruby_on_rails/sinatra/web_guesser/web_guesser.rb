@@ -9,5 +9,5 @@ end
 num = pick_num
 
 get "/" do
-    "The secret number is #{num}"
+    erb :index, :locals => {:num => num}
 end

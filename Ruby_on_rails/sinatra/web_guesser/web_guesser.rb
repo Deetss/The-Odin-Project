@@ -47,7 +47,10 @@ end
 get "/" do
     guess = params['guess'].to_i
     message = check_guess(guess)
-
+    cheating = params['cheat']
+    if cheating
+        message = "The secret number is #{@@secret_num}"
+    end
     if out_of_guesses?
         pick_num
         new_game

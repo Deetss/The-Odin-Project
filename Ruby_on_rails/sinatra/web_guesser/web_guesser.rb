@@ -51,6 +51,7 @@ get "/" do
     if cheating
         message = "The secret number is #{@@secret_num}"
     end
+    
     if out_of_guesses?
         pick_num
         new_game
@@ -60,9 +61,9 @@ get "/" do
     if @@correct
         pick_num
         new_game
-        message = "Good Job! You guessed the correct number! A new number has been generated!"
+        message = "Good Job! You guessed the correct number! It was #{@@secret_num} <br> A new number has been generated!"
     end
 
-    erb :index, :locals => {:message => message, :num => @@secret_num, @@color => @@color}
+    erb :index, :locals => {:message => message, :num => @@secret_num, :color => @@color}
 
 end

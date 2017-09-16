@@ -1,5 +1,9 @@
 <html>
-    <head></head>
+    <head><style>
+        body {
+            background: blue;
+        }
+    </style></head>
     <body>
         <p>Welcome to the Caesar Cipher!</p>
         <form>
@@ -7,9 +11,8 @@
             Please enter a number to encrypt by: <input type="text" name="count">
             <input type="submit" value="Cipher!">
         </form>
-
         <% unless @cipher.nil?%>
-            <%= @cipher %>
+            <p><%= @cipher %></p>
         <% end %>
     </body>
 </html>

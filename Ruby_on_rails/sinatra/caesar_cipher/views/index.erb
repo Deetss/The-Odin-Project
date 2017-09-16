@@ -7,5 +7,9 @@
             Please enter a number to encrypt by: <input type="text" name="count">
             <input type="submit" value="Cipher!">
         </form>
+
+        <% unless @cipher.nil?%>
+            <%= @cipher %>
+        <% end %>
     </body>
 </html>

@@ -1,6 +1,7 @@
 #caesar_cipher method
 def caesar_cipher text, count
     new_text = ""
+    count = count.to_i
     text.each_char do |letter|
         if letter.match(/[a-zA-Z]/)
             count.times do |i|
@@ -15,7 +16,7 @@ def caesar_cipher text, count
             new_text << letter
         end
     end
-    puts new_text
+    new_text
 end
 
 # #get user input for caesar_cipher
@@ -30,5 +31,3 @@ end
 #     puts "Please enter a valid number"
 #     count = gets.strip.to_i
 # end
-
-caesar_cipher("zz", 5)

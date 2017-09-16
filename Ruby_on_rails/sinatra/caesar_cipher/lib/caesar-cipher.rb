@@ -1,56 +1,34 @@
 #caesar_cipher method
 def caesar_cipher text, count
-    #create an array for new text
-    new_letters = []
-    #gets ascii value of each character
-    text_vals = text.bytes
-    #iterates through the array and adjusts char by count
-    for val in text_vals
-        #check if value is A-Z
-        if val >= 65 && val <= 90
-            new_val = val + count
-            #make sure the letters wrap around
-            if new_val > 90
-                wrap = new_val % 90
-                new_val = 64
-                new_val += wrap
-                val = new_val 
+    new_text = ""
+    text.each_char do |letter|
+        if letter.match(/[a-zA-Z]/)
+            count.times do |i|
+                if letter == "z"
+                    letter = "a"
+                elsif letter == "Z"
+                    letter = "A"
+                else
+                    letter = letter.next
+                end
             end
-        #check if value is a-z
-        elsif val >= 97 && val <= 122
-            new_val = val + count
-            #make sure the letters wrap around
-         if new_val > 122
-                wrap = new_val % 122
-                new_val = 96
-                new_val += wrap
-                val = new_val
-            end
-        #checks to see if value is a special character or digit
-        #if so just keep the current value
-        else
-            new_val = val
+            new_text << letter
         end
-        #change each value into a letters
-        new_letter =  new_val.chr
-        #insert new values into new_text array
-        new_letters.push(new_letter)
     end
-    new_text = new_letters.join("")
-    p new_text
+    puts new_text
 end
 
-#get user input for caesar_cipher
-puts "Welcome to the Caesar Cipher!"
-puts "Please enter the text you wish to encrypt:"
-user_input = gets.strip
+# #get user input for caesar_cipher
+# puts "Welcome to the Caesar Cipher!"
+# puts "Please enter the text you wish to encrypt:"
+# user_input = gets.strip
 
-puts "Please enter a number to encrypt by:"
-count = gets.strip.to_i
-#checks to make sure the user input a number
-while count == /\D/
-    puts "Please enter a valid number"
-    count = gets.strip.to_i
-end
+# puts "Please enter a number to encrypt by:"
+# count = gets.strip.to_i
+# #checks to make sure the user input a number
+# while count == /\D/
+#     puts "Please enter a valid number"
+#     count = gets.strip.to_i
+# end
 
-caesar_cipher(user_input, count)
+caesar_cipher("zz", 5)

@@ -1,16 +1,25 @@
 <html>
     <head><style>
         body {
+            position: relative;
             background: blue;
-        }
+            display:table-cell;
+            text-align:center;
+            vertical-align:middle;
+            }
+        html, body {height:100%;}
+        html {display:table; width:100%;}
     </style></head>
     <body>
-        <p>Welcome to the Caesar Cipher!</p>
-        <form>
-            Please enter the text you wish to encrypt: <input type="text" name="message"><br>
-            Please enter a number to encrypt by: <input type="text" name="count">
-            <input type="submit" value="Cipher!">
-        </form>
+        <h1>Welcome to the Caesar Cipher!</h1>
+        <div class="input">
+            <form>
+                Please enter the text you wish to encrypt: <input type="text" name="message"><br>
+                Please enter a number to encrypt by: <input type="text" name="count"><br>
+                <input type="submit" value="Cipher!">
+            </form>
+        </div>
+        <p>Output: </p>
         <% unless @cipher.nil?%>
             <p><%= @cipher %></p>
         <% end %>
